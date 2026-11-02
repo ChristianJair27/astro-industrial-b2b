@@ -1,0 +1,50 @@
+---
+import { Image } from 'astro:assets';
+import { site } from '../config/site';
+import { rfqMailHref } from '../lib/links';
+import heroImg from '../assets/hero-pieza.png';
+import Icon from './Icon.astro';
+
+const { hero } = site;
+---
+
+<section class="blueprint relative overflow-hidden bg-brand-950 text-white" data-section="hero">
+  <div class="container-page relative grid gap-10 py-14 md:grid-cols-[1.1fr_1fr] md:items-center md:py-20">
+    <div>
+      <p class="font-mono text-xs font-semibold tracking-widest text-accent-300 uppercase">{hero.eyebrow}</p>
+      <h1 class="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">{hero.heading}</h1>
+      <p class="mt-5 max-w-xl text-lg text-brand-200">{hero.sub}</p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a href="#rfq" class="btn bg-accent-600 text-white hover:bg-accent-700">
+          <Icon name="file" class="size-5" /> {hero.primaryCta}
+        </a>
+        <a href="#capacidades" class="btn border border-brand-600 text-white hover:bg-brand-800">{hero.secondaryCta}</a>
+      </div>
+      <p class="mt-5 text-sm text-brand-200">
+        ¿Prefieres correo? <a href={rfqMailHref} class="font-semibold text-white underline underline-offset-2">{site.email}</a>
+      </p>
+    </div>
+
+    <div>
+      <Image
+        src={heroImg}
+        alt={hero.imageAlt}
+        widths={[480, 720, 960]}
+        sizes="(min-width: 768px) 520px, calc(100vw - 2rem)"
+        loading="eager"
+        fetchpriority="high"
+        class="h-auto w-full rounded-md ring-1 ring-brand-700"
+      />
+      <dl class="mt-4 grid grid-cols-3 divide-x divide-brand-700 rounded-md border border-brand-700 bg-brand-900">
+        {
+          hero.specs.map((s) => (
+            <div class="flex min-w-0 flex-col p-3 sm:p-4">
+              <dt class="text-xs text-brand-200">{s.label}</dt>
+              <dd class="order-first font-mono text-base font-bold whitespace-nowrap text-accent-300 sm:text-xl">{s.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </div>
+</section>

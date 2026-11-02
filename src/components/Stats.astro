@@ -1,0 +1,19 @@
+---
+import { site } from '../config/site';
+---
+
+<section class="border-b border-brand-100 bg-brand-50 py-10" data-section="stats" aria-label="Cifras">
+  <div class="container-page">
+    <dl class="grid grid-cols-2 gap-6 md:grid-cols-4">
+      {
+        site.stats.map((s) => (
+          <div class="flex flex-col border-l-4 border-accent-600 pl-4">
+            <dt class="text-sm text-muted">{s.label}</dt>
+            <dd class="order-first font-mono text-3xl font-bold text-brand-900">{s.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+    {site.statsAreDemo && <p class="mt-6 text-xs text-muted" data-testid="stats-demo">Cifras de demostración: se reemplazan por datos reales y comprobables del cliente.</p>}
+  </div>
+</section>

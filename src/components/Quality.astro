@@ -1,0 +1,38 @@
+---
+import { site } from '../config/site';
+import Icon from './Icon.astro';
+---
+
+<section id="calidad" class="py-16 md:py-24" data-section="quality">
+  <div class="container-page grid gap-10 lg:grid-cols-2">
+    <div>
+      <p class="eyebrow">Calidad</p>
+      <h2 class="section-title mt-2">Certificaciones y control de calidad</h2>
+      <p class="mt-3 text-muted">Documentación de calidad lista para tu alta de proveedor.</p>
+      <ul class="mt-6 space-y-3">
+        {
+          site.qualityPractices.map((q) => (
+            <li class="flex gap-3 text-ink">
+              <Icon name="check" class="mt-0.5 size-5 shrink-0 text-accent-700" />
+              {q}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <ul class="grid gap-4" data-testid="certifications">
+      {
+        site.certifications.map((c) => (
+          <li class="flex gap-4 rounded-md border border-dashed border-brand-300 p-5">
+            <Icon name="shield" class="size-8 shrink-0 text-brand-600" />
+            <div>
+              <p class="text-sm text-muted">{c.label}</p>
+              <p class="font-mono font-bold text-brand-900">{c.value}</p>
+              <p class="mt-1 text-sm text-muted">{c.note}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

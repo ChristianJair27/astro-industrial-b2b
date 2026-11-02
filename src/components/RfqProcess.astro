@@ -1,0 +1,21 @@
+---
+import { site } from '../config/site';
+---
+
+<section id="proceso" class="blueprint bg-brand-900 py-16 text-white md:py-24" data-section="process">
+  <div class="container-page">
+    <p class="font-mono text-xs font-semibold tracking-widest text-accent-300 uppercase">Proceso</p>
+    <h2 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">De tu RFQ a producción</h2>
+    <ol class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+      {
+        site.rfqProcess.map((step, i) => (
+          <li class="rounded-md border border-brand-700 bg-brand-950 p-5">
+            <span class="font-mono text-sm font-bold text-accent-300" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="mt-2 text-lg font-bold">{step.title}</h3>
+            <p class="mt-2 text-sm text-brand-200">{step.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
